@@ -9,12 +9,13 @@
   "scripts": {
     "start": "node index.js",
     "test": "npm run test:unit && npm run test:integration",
-    "test:integration" : "node_modules/.bin/mocha -R list -g 'Integration Tests'",
-    "test:unit" : "node_modules/.bin/mocha -R list -g 'Unit Tests'"
+    "test:integration": "node_modules/.bin/mocha -R list -g 'Integration Tests'",
+    "test:unit": "node_modules/.bin/mocha -R list -g 'Unit Tests'"
   },
   "dependencies": {
     "ejs": "2.4.1",
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "mongodb": "^2.2.5"
   },
   "repository": {
     "type": "git",

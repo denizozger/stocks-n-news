@@ -1,10 +1,11 @@
 const 
-	assert = require('assert');
+	assert     = require('assert'),
+  storyUtils = require('../app/story-utils');
 
 describe('Unit Tests', function() {
 
   it('should analyse story sentiment', function() {
-    assert(true);
+    assert.equal(storyUtils.foo(), 'bar');
   });
   
 });

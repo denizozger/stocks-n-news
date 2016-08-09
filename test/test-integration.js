@@ -1,11 +1,16 @@
 const 
-	assert = require('assert');
+	assert = require('assert'),
+	db = require('../app/db');
 
 describe('Integration Tests', function() {
 
   describe('Database', function() {
-    it('should fetch ticket codes', function() {
-      assert(true);
+    it('should fetch ticket codes', done => {
+      db.getCompanies((err, companies) => {
+      	console.log(companies);
+      	assert.equal(companies.length, 5);
+      	done();
+      });
     });
   });
 
