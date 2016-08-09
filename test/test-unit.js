@@ -2,7 +2,9 @@
 
 const 
 	assert     = require('assert'),
-  storyUtils = require('../app/story-utils');
+  storyUtils = require('../app/story-utils'),
+  request    = require('supertest'),
+  app        = require('../index');
 
 describe('Unit Tests', function() {
 
@@ -15,6 +17,14 @@ describe('Unit Tests', function() {
 
   	const neutralStory = 'positive but disappointing, gains but decline ಠ_ಠ'
     assert.equal(storyUtils.getSentimentOfStory({body: neutralStory}), 0);
+  });
+
+  describe('Route Tests', function() {
+    it('should load homepage', done => {
+      request(app)
+        .get('/')
+        .expect(200, done);
+    });
   });
   
 });
