@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "develop": "node_modules/.bin/nodemon",
     "test": "npm run test:unit && npm run test:integration",
     "test:integration": "node_modules/.bin/mocha -R list -g 'Integration Tests'",
     "test:unit": "node_modules/.bin/mocha -R list -g 'Unit Tests'"
