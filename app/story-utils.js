@@ -4,7 +4,17 @@ const
 	positiveWords = ['positive', 'success', 'grow', 'gains', 'happy', 'healthy'],
 	negativeWords = ['disappointing', 'concerns', 'decline', 'drag', 'slump', 'feared'];
 
-exports.getSentimentOfStory =  story => {
+exports.populateSentimentsOfStories = company => {
+	if (company.newsFeed) {
+		company.newsFeed = company.newsFeed.map(news => {
+			news.sentiment = exports.getSentimentOfStory(news);
+			return news;
+		});
+	}
+	return company;
+}
+
+exports.getSentimentOfStory = story => {
 	let wordsInStory = removePunctiationAndWhitespace(story.body).split(' ');
 	return getPositiveWordCount(wordsInStory) - getNegativeWordCount(wordsInStory);
 }

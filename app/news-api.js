@@ -4,13 +4,19 @@ const
 	request = require('request');
 
 exports.populateNewsOfCompany = (company, cb) => {
-	request(company.storyFeedUrl, (err, response, body) => {
+	if (!company.stockPrice.storyFeedUrl) {
+		return cb(null, company);
+	}
+
+	request(company.stockPrice.storyFeedUrl, (err, response, body) => {
 		let newsFeed;
 		try {
 		  newsFeed = JSON.parse(body);
 		} catch (e) {
-		  return cb(e, null);
+		  	console.error(`Invalid JSON (${body}) for company ${company.name}`);
+		    return cb(null, company);
 		}
-		return cb(err, newsFeed)
+		company.newsFeed = newsFeed;
+		return cb(err, company)
 	});
 }

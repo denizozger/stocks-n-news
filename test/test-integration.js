@@ -31,9 +31,9 @@ describe('Integration Tests', function() {
     it('should fetch news about Google', done => {
       newsApi.populateNewsOfCompany({
       	storyFeedUrl: `${process.env.STORY_FEED_API_URL}/8271`
-      }, (err, news) => {
-      	console.log(news);
-      	news.should.be.instanceof(Array).and.have.lengthOf(2);
+      }, (err, company) => {
+      	console.log(company.newsFeed);
+      	company.newsFeed.should.be.instanceof(Array).and.have.lengthOf(2);
       	done();
       });
     });
