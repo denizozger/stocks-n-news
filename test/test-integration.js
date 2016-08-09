@@ -1,6 +1,8 @@
 const 
-	assert = require('assert'),
-	db = require('../app/db');
+	assert 		= require('assert'),
+	should 		= require('should'),
+	db 				= require('../app/db'),
+	stockApi 	= require('../app/stock-api');
 
 describe('Integration Tests', function() {
 
@@ -15,8 +17,12 @@ describe('Integration Tests', function() {
   });
 
   describe('Stock API', function() {
-    it('should fetch stock prices', function() {
-      assert(true);
+    it("should fetch Google's stock price", done => {
+      stockApi.getStockPriceByTickerCode('GOOG', (err, stockPrice) => {
+      	console.log(stockPrice);
+      	stockPrice.should.have.property('latestPrice').which.is.a.Number();
+      	done();
+      });
     });
   });
 

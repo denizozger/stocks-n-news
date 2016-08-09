@@ -1,3 +1,5 @@
+'use strict';
+
 const 
 	assert     = require('assert'),
   storyUtils = require('../app/story-utils');
