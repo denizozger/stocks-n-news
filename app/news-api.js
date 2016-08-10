@@ -4,6 +4,7 @@ const
 	request = require('request');
 
 exports.populateNewsOfCompany = (company, cb) => {
+	company.newsFeed = [];
 	if (!company.stockPrice.storyFeedUrl) {
 		return cb(null, company);
 	}

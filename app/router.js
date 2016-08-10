@@ -12,6 +12,7 @@ exports.homepage = (req, res) => {
 		.then(companies => companies.map(c => news.populateNewsOfCompanyAsync(c))).all()
 		.then(companies => companies.map(c => stories.populateSentimentsOfStories(c)))
 		.then(companies => {
+			// console.log(companies);
 	    return res.render('pages/index', {companies: companies});		
 		})
 		.catch(err => handleError(req, res, err));

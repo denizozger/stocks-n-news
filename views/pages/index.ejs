@@ -6,16 +6,50 @@
 
 <body>
 
-  <% include ../partials/nav.ejs %>
-
   <div class="container">
 
     <div class="row">
 
-      <div class="col-md-6">
-          <%= companies %>
+        <div class="col-md-6 col-centered">
+          <%
+            companies.forEach(function(company) {
+          %>
+            <div class="card">
+              <div class="card-block">
+                <h4 class="card-title"><%= company.name %></h4>
+                <p class="card-text text-muted"><%= company.tickerCode %> <%= company.stockPrice.latestPrice %><%= company.stockPrice.priceUnits %></p>
+                <ul class="list-group list-group-flush">
+                  <%
+                    company.newsFeed.forEach(function(news) {
+                  %>
+                    <li class="list-group-item"><%= news.body %>
+                      <div class="text-xs-right">
+                        <% if (news.sentiment > 0) { %>
+                          <i class="fa fa-smile-o" aria-hidden="true"></i>
+                        <% } else if(news.sentiment < 0) { %>
+                          <i class="fa fa-frown-o" aria-hidden="true"></i>
+                        <% } else { %>
+                          <i class="fa fa-meh-o" aria-hidden="true"></i>
+                        <% } %>
+                      </div>
+                    </li>
+                  <%
+                    });
+                  %>
+                </ul>
+                <%
+                  if (company.stockPrice && company.stockPrice.asOf) {
+                %>
+                  <p class="card-text"><small class="text-muted">Last updated <%= parseStockDate(company.stockPrice.asOf) %></small></p>
+                <% 
+                  } 
+                %>
+              </div>
+            </div>
+          <%
+            });
+          %>  
       </div>
-      
     </div> 
 
   </div>
